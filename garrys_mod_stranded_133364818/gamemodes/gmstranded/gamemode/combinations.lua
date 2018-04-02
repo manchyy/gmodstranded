@@ -1813,3 +1813,22 @@ COMBI.Req["Glass"] = 5
 COMBI.Req["Batteries"] = 2
 
 GMS.RegisterCombi( COMBI, "gms_techworkbench" )
+------------------------------------------------------------------------
+
+local COMBI = {}
+
+COMBI.Name = "Sifter"
+COMBI.Description = "TESTING."
+COMBI.Entity = "gms_techworkbench"
+
+COMBI.Req = {}
+COMBI.Req["Wood"] = 1
+
+COMBI.SkillReq = {}
+COMBI.SkillReq["Weapon_Crafting"] = 1
+COMBI.SkillReq["Harvesting"] = 1
+
+COMBI.Texture = "gms_icons/gms_weapon.png"
+COMBI.SwepClass = "weapon_sifter"
+
+GMS.RegisterCombi( COMBI, "gms_techworkbench" )

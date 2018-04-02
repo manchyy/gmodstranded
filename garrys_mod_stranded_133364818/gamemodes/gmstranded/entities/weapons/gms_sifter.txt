@@ -1,0 +1,44 @@
+
+AddCSLuaFile ()
+
+SWEP.Slot = 4
+SWEP.SlotPos = 1
+
+SWEP.Base = "gms_base_weapon"
+SWEP.PrintName = "Sifter"
+SWEP.ViewModel = "models/weapons/v_hands.mdl"
+SWEP.WorldModel = "models/props_junk/PlasticCrate01a.mdl"
+
+SWEP.Purpose = "Gather Water Bottles Efficiently!"
+SWEP.Instructions = "Primary fire: Gather Water"
+
+SWEP.HoldType = "revolver"
+SWEP.NoTraceFix = true
+SWEP.HitDistance = 512
+SWEP.Mask = bit.bor( MASK_WATER, MASK_SOLID )
+
+SWEP.Primary.Damage = 10
+SWEP.Primary.Delay = 1
+SWEP.UseHands = true
+SWEP.Skin = 2
+
+function SWEP:PlaySwingSound()
+	self:PlaySound( "npc/vort/claw_swing" .. math.random ( 1,2 ) .. ".wav" )
+	
+end
+
+function SWEP:OnHit( tr )
+	if ( CLIENT ) then return end
+	
+	if ( tr.Hit && ( tr.MatType == MAT_SLOSH || string.find( tr.HitTexture, "water" ) ) ) then
+		self.Owner:DoProcess( "Harvesting", 10, {
+			Chance = 100
+			} )
+		end
+	
+end
+
+SWEP.FixWorldModel = true
+SWEP.FixWorldModelPos = Vector ( 30, 2.5, -1)
+SWEP.FixWorldModelAng = Angle (90, 0 , 90 )
+SWEP.FixWorldModelScale = 1
